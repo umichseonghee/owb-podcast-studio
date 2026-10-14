@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#00274c"><title>Podcast Studio · Office of Well-Being</title><meta name="description" content="Plan thoughtful conversations and create Office of Well-Being podcast guides."><link rel="stylesheet" href="style.css"></head>
+<body>
+<aside class="sidebar">
+ <a class="brand" href="#"><span class="brand-mark">W<span>•</span></span><span>MICHIGAN MEDICINE<small>Office of Well-Being</small></span></a>
+ <div class="studio-label">YOUR WORKSPACE</div><h1>Podcast Studio</h1><p class="sidebar-sub">Good conversations<br>begin with a little intention.</p>
+ <button id="newEpisode" class="new-button">＋ &nbsp; New episode</button>
+ <div class="library-heading">EPISODE LIBRARY <span id="episodeCount">0</span></div><nav id="library" aria-label="Saved episodes"></nav>
+ <div class="sidebar-bottom"><span class="privacy-dot"></span> Saved on this browser<p>Your drafts are stored on this device.<br>Download a backup to keep a copy.</p><button class="text-button" id="backup">Export backup</button><span> · </span><button class="text-button" id="restore">Import backup</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
+</aside>
+<main class="workspace">
+ <header class="topbar"><div><span class="eyebrow">WELL-BEING AT MICHIGAN MEDICINE</span><h2>Make room for a meaningful conversation.</h2></div><span class="save-state" id="saveState" role="status">All changes saved</span></header>
+ <div class="workbar"><div class="tabs" role="tablist" aria-label="Planning view"><button role="tab" aria-selected="true" class="active" id="planTab">01 &nbsp; Plan your episode</button><button role="tab" aria-selected="false" id="guideTab">02 &nbsp; Conversation guide</button></div><button class="text-button muted" id="loadExample">Load Flint example</button></div>
+ <section id="planPanel" role="tabpanel" aria-labelledby="planTab">
+  <div class="planner-grid"><form id="episodeForm" class="form-stack">
+   <section class="card"><div class="section-heading"><span class="step">01</span><div><h3>Set the conversation</h3><p>A clear focus gives the discussion somewhere to go.</p></div></div>
+   <label for="title">Episode title <span class="required">*</span></label><input id="title" name="title" maxlength="200" placeholder="e.g. Mindfulness in Action" required>
+   <label for="subtitle">Subtitle <span class="optional">optional</span></label><input id="subtitle" name="subtitle" maxlength="250" placeholder="e.g. Building Well-Being from Campus to Community">
+   <div class="field-row"><div><label for="duration">Recording length</label><select id="duration" name="duration"><option value="20">20 minutes · focused</option><option value="30" selected>30 minutes · standard</option><option value="45">45 minutes · in depth</option><option value="60">60 minutes · extended</option></select></div><div><label for="tone">Conversation tone</label><select id="tone" name="tone"><option value="warm">Warm and conversational</option><option value="practical">Practical and action-oriented</option><option value="reflective">Reflective and personal</option></select></div></div>
+   <label for="audience">Who is listening?</label><input id="audience" name="audience" maxlength="250" placeholder="e.g. Michigan Medicine faculty, staff, and leaders">
+   <label for="goal">What should listeners take away? <span class="required">*</span></label><textarea id="goal" name="goal" rows="3" maxlength="1500" placeholder="Describe the central idea or question this episode will explore." required></textarea>
+   </section>
+   <section class="card"><div class="section-heading"><span class="step">02</span><div><h3>Bring people into the room</h3><p>Give each guest a clear place in the conversation.</p></div></div>
+   <div class="field-row"><div><label for="host">Host name and credentials</label><input id="host" name="host" maxlength="200"></div><div><label for="hostRole">Host role and organization</label><input id="hostRole" name="hostRole" maxlength="300"></div></div>
+   <div id="guests"></div><button type="button" id="addGuest" class="outline-button">＋ Add a guest</button>
+   </section>
+   <section class="card"><div class="section-heading"><span class="step">03</span><div><h3>Find the threads</h3><p>Topics become the starting points for your questions.</p></div></div>
+   <label for="topics">Topics of interest <span class="required">*</span></label><textarea id="topics" name="topics" rows="4" maxlength="2500" placeholder="One topic per line, for example:&#10;Mindfulness in everyday life&#10;Trust and community partnership&#10;Organizational responsibility" required></textarea><p class="field-help">Add up to eight topics. Specific topics make more useful questions.</p>
+   <label for="mustAsk">Questions you already want to ask <span class="optional">optional</span></label><textarea id="mustAsk" name="mustAsk" rows="3" maxlength="5000" placeholder="One question per line. These will be preserved in the guide."></textarea>
+   <label for="notes">Host preparation notes <span class="optional">optional</span></label><textarea id="notes" name="notes" rows="3" maxlength="5000" placeholder="Background, pronunciations, sensitive topics, or links to review."></textarea><p class="field-help">Kept in your plan and backup; excluded from guest-facing exports.</p>
+   </section>
+   <div class="generate-bar"><div><strong>Your next thoughtful conversation.</strong><p>Generate a starting draft, then make it your own.</p></div><button type="submit" class="primary-button">Create conversation guide <span>→</span></button></div>
+  </form>
+  <aside class="planning-aside"><div class="template-card"><span class="eyebrow">YOUR OFFICE TEMPLATE</span><div class="mini-paper"><span>OFFICE OF WELL-BEING</span><strong id="miniTitle">Your next<br>conversation</strong><p id="miniSubtitle">A little preparation.<br>A more meaningful exchange.</p><i></i><small>Well-Being at Michigan Medicine<br><br>Guest Conversation Guide</small></div><div class="template-caption"><span class="checkmark">✓</span><div><strong>The OWB look, every time.</strong><p>Navy and maize. Branded cover.<br>Editable Word and print-ready PDF.</p></div></div></div>
+  <div class="how-card"><h4>From a brief to a conversation</h4><ol><li><span>1</span>Add your guests and focus.</li><li><span>2</span>Generate and edit the questions.</li><li><span>3</span>Export a guide for your recording.</li></ol><p>This planner uses structured prompts tailored to your inputs. It does not use AI or verify guest information. Review the draft before sharing.</p></div>
+  </aside></div>
+ </section>
+ <section id="guidePanel" role="tabpanel" aria-labelledby="guideTab" hidden>
+  <div class="guide-toolbar"><div><h3>Your conversation guide</h3><p id="guideSummary">A thoughtful starting point, ready for your voice.</p></div><div class="export-buttons"><button id="copyGuide" class="outline-button">Copy text</button><button id="wordExport" class="outline-button">↓ Word</button><button id="pdfExport" class="primary-button">↓ PDF / Print</button></div></div>
+  <div id="staleNotice" class="notice" hidden>Your plan has changed since this guide was generated. Your question edits are safe. <button id="refreshGuide" class="text-button">Generate a new draft</button></div>
+  <div class="guide-layout"><div id="guidePreview"></div><aside class="guide-aside"><div class="card"><span class="eyebrow">MAKE IT YOURS</span><h3>Edit before you export.</h3><p>Choose “Edit questions” to revise wording, guest cues, and follow-ups. Your edits save automatically.</p><button id="editToggle" class="outline-button">Edit questions</button><button id="addQuestion" class="text-button">＋ Add a question</button><hr><p class="small">PDF opens your browser’s print dialog. Choose “Save as PDF,” Letter paper, and turn off browser headers and footers.</p></div><div id="questionEditor" class="card" hidden></div></aside></div>
+ </section>
+</main><div id="toast" role="status" class="toast" hidden></div>
+<dialog id="confirmDialog"><h3 id="dialogTitle"></h3><p id="dialogText"></p><div class="dialog-actions"><button id="dialogCancel" class="outline-button">Cancel</button><button id="dialogAccept" class="primary-button">Continue</button></div></dialog>
+<script src="engine.js"></script><script src="export.js"></script><script src="app.js"></script>
+</body></html>
